@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传奇装备掉落查询 - 装备爆率一览表</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 页面头部 -->
+    <header class="header">
+        <div class="container">
+            <h1 class="title">⚔️ 传奇装备掉落查询</h1>
+            <p class="subtitle">快速查找装备最佳获取途径</p>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 搜索和筛选区 -->
+            <div class="filter-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="🔍 搜索装备名称或怪物名称..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="typeFilter">装备类型：</label>
+                        <select id="typeFilter">
+                            <option value="">全部类型</option>
+                            <option value="武器">武器</option>
+                            <option value="衣服">衣服</option>
+                            <option value="头盔">头盔</option>
+                            <option value="项链">项链</option>
+                            <option value="手镯">手镯</option>
+                            <option value="戒指">戒指</option>
+                            <option value="腰带">腰带</option>
+                            <option value="鞋子">鞋子</option>
+                            <option value="勋章">勋章</option>
+                            <option value="盾牌">盾牌</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="filter-group">
+                        <label for="sortBy">排序方式：</label>
+                        <select id="sortBy">
+                            <option value="name">装备名称</option>
+                            <option value="type">装备类型</option>
+                            <option value="probability">掉落概率</option>
+                        </select>
+                    </div>
+
+                    <button id="resetBtn" class="reset-btn">重置筛选</button>
+                </div>
+            </div>
+
+            <!-- 统计信息 -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <div class="stat-label">装备总数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="displayCount">0</div>
+                    <div class="stat-label">当前显示</div>
+                </div>
+            </div>
+
+            <!-- 装备列表表格 -->
+            <div class="table-container">
+                <table class="equipment-table">
+                    <thead>
+                        <tr>
+                            <th class="col-type">装备类型</th>
+                            <th class="col-name">装备名称</th>
+                            <th class="col-monster">最佳掉落怪物</th>
+                            <th class="col-probability">掉落概率</th>
+                            <th class="col-action">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equipmentTableBody">
+                        <!-- 数据将通过 JavaScript 动态加载 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 加载提示 -->
+            <div id="loadingIndicator" class="loading">
+                <div class="spinner"></div>
+                <p>正在加载装备数据...</p>
+            </div>
+
+            <!-- 空数据提示 -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <p>😢 没有找到符合条件的装备</p>
+                <p class="empty-hint">试试调整筛选条件或搜索关键词</p>
+            </div>
+
+            <!-- 分页控制 -->
+            <div class="pagination" id="pagination">
+                <button id="prevPage" class="page-btn">上一页</button>
+                <span id="pageInfo" class="page-info">第 1 页 / 共 1 页</span>
+                <button id="nextPage" class="page-btn">下一页</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 装备详情模态框 -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">装备详情</h2>
+            <div id="modalBody">
+                <!-- 详情内容将通过 JavaScript 动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 传奇装备查询工具 | 数据来源：MonItems 文件夹</p>
+            <p class="footer-note">共收录 <span id="footerTotal">0</span> 种装备，<span id="footerMonsters">508</span> 个怪物</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
